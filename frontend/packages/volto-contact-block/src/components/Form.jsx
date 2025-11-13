@@ -151,6 +151,7 @@ const ContactForm = (props) => {
   };
 
   const onSubmitHandler = (event) => {
+    console.log('onSubmitHandler state:', state);
     event.preventDefault();
 
     if (!state.privacy_consent) {
@@ -440,6 +441,7 @@ const ContactForm = (props) => {
             <Button
               className={`submit-button${loading ? ' loading' : ''}`}
               name="submit"
+              type="submit"
             >
               {intl.formatMessage(messages.SendMessage)}
             </Button>

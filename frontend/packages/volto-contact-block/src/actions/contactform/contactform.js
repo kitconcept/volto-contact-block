@@ -20,12 +20,13 @@ export function getContactFormTicket(contactPath) {
     type: CONTACTFORM_TICKET,
     request: {
       op: 'get',
-      path: `${flattenToAppURL(contactPath)}/@contact-form`,
+      path: `${flattenToAppURL(contactPath)}/@form-ticket`,
     },
   };
 }
 
 export function submitContactForm(contactPath, data) {
+  console.log('this is contactPath', contactPath);
   return {
     type: CONTACTFORM_SUBMIT,
     request: {
