@@ -27,12 +27,14 @@ dependencies = [
     "plone.api",
     "plone.restapi",
     "plone.volto",
+    "collective.person==1.0.0b3",
 ]
 
 [project.optional-dependencies]
 test = [
     "horse-with-no-namespace",
     "plone.app.testing",
+    "Products.PrintingMailHost",
     "plone.restapi[test]",
     "pytest",
     "pytest-cov",
