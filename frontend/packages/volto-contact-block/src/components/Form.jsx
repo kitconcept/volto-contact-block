@@ -429,14 +429,14 @@ const ContactForm = (props) => {
 
           <hr />
           <fieldset>
-            {/* {serverError && (
+            {serverError && (
               <div className="error-message">
                 <div className="error-header">
                   {intl.formatMessage(messages.Error)}
                 </div>
                 <p>{serverError.response.body.message}</p>
               </div>
-            )} */}
+            )}
             <Button
               className={`submit-button${loading ? ' loading' : ''}`}
               name="submit"
