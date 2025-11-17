@@ -26,7 +26,6 @@ export function getContactFormTicket(contactPath) {
 }
 
 export function submitContactForm(contactPath, data) {
-  console.log('this is contactPath', contactPath);
   return {
     type: CONTACTFORM_SUBMIT,
     request: {

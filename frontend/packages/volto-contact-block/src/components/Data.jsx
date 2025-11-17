@@ -40,7 +40,6 @@ const ContactListData = (props) => {
             'description',
           ].map((n) => (itemData[n] = resp[n]));
           itemData['has_email'] = Boolean(resp['contact_email']);
-          console.log('itemData:', itemData);
           onChangeBlock(block, {
             ...data,
             hrefList: replaceItemOfArray(data.hrefList, index, {
