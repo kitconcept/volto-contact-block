@@ -4,10 +4,6 @@ import path from 'path';
 
 export default defineConfig({
   ...voltoVitestConfig,
-  test: {
-    ...voltoVitestConfig.test,
-    passWithNoTests: true,
-  },
   resolve: {
     alias: {
       '@plone/volto': path.resolve(__dirname, '../../core/packages/volto/src'),
