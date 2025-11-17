@@ -151,7 +151,6 @@ const ContactForm = (props) => {
   };
 
   const onSubmitHandler = (event) => {
-    console.log('onSubmitHandler state:', state);
     event.preventDefault();
 
     if (!state.privacy_consent) {

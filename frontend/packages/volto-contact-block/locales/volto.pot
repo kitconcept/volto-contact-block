@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-03-22T12:43:34.158Z\n"
+"POT-Creation-Date: 2025-11-17T09:34:42.490Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -12,3 +12,188 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8\n"
 "Domain: volto\n"
+
+#. Default: "Add Contact"
+#: components/schema
+msgid "Add Contact"
+msgstr ""
+
+#. Default: "Your Message is Addressed to"
+#: components/Form
+msgid "Addressee"
+msgstr ""
+
+#. Default: "CAPTCHA-Letters"
+#: components/Form
+msgid "CAPTCHA-Letters"
+msgstr ""
+
+#. Default: "Cancel"
+#: components/Form
+msgid "Cancel"
+msgstr ""
+
+#. Default: "Close Window"
+#: components/Form
+msgid "CloseWindow"
+msgstr ""
+
+#. Default: "Contact"
+#: components/schema
+msgid "Contact"
+msgstr ""
+
+#. Default: "Contact: Write a Message"
+#: components/Form
+msgid "ContactFormHeader"
+msgstr ""
+
+#. Default: "Your Message to Us (max. 1000 characters) *"
+#: components/Form
+msgid "ContactFormMessage"
+msgstr ""
+
+#. Default: "Subject of Your Message *"
+#: components/Form
+msgid "ContactFormSubject"
+msgstr ""
+
+#. Default: "Your Message about \"{title}\""
+#: components/Form
+msgid "ContactFormTitle"
+msgstr ""
+
+#. Default: "Contacts List"
+#: components/schema
+msgid "Contacts List"
+msgstr ""
+
+#. Default: "Divers"
+#: components/Form
+msgid "Divers"
+msgstr ""
+
+#. Default: "Error"
+#: components/Form
+msgid "Error"
+msgstr ""
+
+#. Default: "Headline"
+#: components/schema
+msgid "Headline"
+msgstr ""
+
+#. Default: "I have read the data protection regulations carefully, I have understood the procedure described and hereby consent to the processing of my data for the purpose of contacting me."
+#: components/Form
+msgid "I have read the data protection regulations carefully, I have understood the procedure described and hereby consent to the processing of my data for the purpose of contacting me."
+msgstr ""
+
+#. Default: "In order to provide you with this service, we store the data you enter. It will be used for this purpose only. It will not be passed on to third parties. The data will be deleted as soon as it is no longer required to achieve the intended purpose. The legal basis for processing the data, if the user has given their consent, is Art. 6 (1) (a) GDPR. The legal basis for processing data transmitted when sending an email is Art. 6 (1) (f) GDPR. If the contact is aimed at concluding a contract, the additional legal basis for processing is Art. 6 (1) (b) GDPR. Data protection information."
+#: components/Form
+msgid "In order to provide you with this service, we store the data you enter. It will be used for this purpose only. It will not be passed on to third parties. The data will be deleted as soon as it is no longer required to achieve the intended purpose. The legal basis for processing the data, if the user has given their consent, is Art. 6 (1) (a) GDPR. The legal basis for processing data transmitted when sending an email is Art. 6 (1) (f) GDPR. If the contact is aimed at concluding a contract, the additional legal basis for processing is Art. 6 (1) (b) GDPR. Data protection information."
+msgstr ""
+
+#. Default: "Items"
+#: components/schema
+msgid "Items"
+msgstr ""
+
+#. Default: "Note: Required information is marked with a *"
+#: components/Form
+msgid "Mandatory"
+msgstr ""
+
+#. Default: "Your message has been successfully delivered to \"{name}\""
+#: components/Form
+msgid "MessageSent"
+msgstr ""
+
+#. Default: "Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email. In urgent cases regarding this issue, please call xxxx xxx xxx"
+#: components/Form
+msgid "MessageSentDetails"
+msgstr ""
+
+#. Default: "Thank you for contacting us."
+#: components/Form
+msgid "MessageSentThanks"
+msgstr ""
+
+#. Default: "Mr"
+#: components/Form
+msgid "Mr"
+msgstr ""
+
+#. Default: "Mrs"
+#: components/Form
+msgid "Mrs"
+msgstr ""
+
+#. Default: "Our Data Safety Rules"
+#: components/Form
+msgid "Our Data Safety Rules"
+msgstr ""
+
+#. Default: "Our services are primarily aimed at individuals who have reached the age of 16. Individuals under the age of 16 may not transmit any personal data to us without the consent of their parents or guardians."
+#: components/Form
+msgid "Our services are primarily aimed at individuals who have reached the age of 16. Individuals under the age of 16 may not transmit any personal data to us without the consent of their parents or guardians."
+msgstr ""
+
+#. Default: "Please choose an existing contact as source for this element"
+#: components/View
+msgid "Please choose an existing contact as source for this element"
+msgstr ""
+
+#. Default: "Please enter the letters from the CAPTCHA image here:"
+#: components/Form
+msgid "Please enter the letters from the CAPTCHA image here:"
+msgstr ""
+
+#. Default: "Privacy Policy"
+#: components/Form
+msgid "PrivacyPolicy"
+msgstr ""
+
+#. Default: "Salutation"
+#: components/Form
+msgid "Salutation"
+msgstr ""
+
+#. Default: "Security measure: Please confirm that you are human"
+#: components/Form
+msgid "Security measure: Please confirm that you are human"
+msgstr ""
+
+#. Default: "Send Message"
+#: components/Form
+msgid "Send Message"
+msgstr ""
+
+#. Default: "Source"
+#: components/schema
+msgid "Source"
+msgstr ""
+
+#. Default: "This captcha is a security measure to help prevent spam and abuse. Please enter the requested information in the field below the captcha image to confirm you are not a robot. Thank you for your help!"
+#: components/Form
+msgid "This captcha is a security measure to help prevent spam and abuse. Please enter the requested information in the field below the captcha image to confirm you are not a robot. Thank you for your help!"
+msgstr ""
+
+#. Default: "Your Contact Info"
+#: components/Form
+msgid "Your Contact Info"
+msgstr ""
+
+#. Default: "Your E-mail *"
+#: components/Form
+msgid "YourEmail"
+msgstr ""
+
+#. Default: "Your Name *"
+#: components/Form
+msgid "YourName"
+msgstr ""
+
+#. Default: "Contact"
+#: components/Body
+msgid "contactButtonLabel"
+msgstr ""
