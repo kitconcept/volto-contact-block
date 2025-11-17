@@ -147,7 +147,6 @@
   .fields-row {
     display: flex;
     gap: 10px;
-
   }
   .fields-row > *:first-child {
     flex: 1;
@@ -247,7 +246,7 @@
     background: transparent;
     transition: background 0.2s ease-in-out;
   }
-  .checkbox-box.age_consent{
+  .checkbox-box.age_consent {
     width: 113px;
   }
 
@@ -264,9 +263,6 @@
     color: #000;
     font-size: 40px;
     font-weight: 200;
-
-
-
   }
 
   .checkbox-label {
@@ -377,8 +373,9 @@
     margin: 75px auto;
   }
 
-  p,.contact-detail,label {
+  p,
+  .contact-detail,
+  label {
     color: #000;
   }
-
 }

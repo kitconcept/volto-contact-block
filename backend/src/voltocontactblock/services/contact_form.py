@@ -1,14 +1,14 @@
 from email.message import EmailMessage
 from email.utils import formataddr
-
-from voltocontactblock import _, logger
 from plone import api
+from plone.protect.interfaces import IDisableCSRFProtection
 from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
+from voltocontactblock import _
+from voltocontactblock import logger
 from zExceptions import BadRequest
 from zope.i18n import translate
 from zope.interface import alsoProvides
-from plone.protect.interfaces import IDisableCSRFProtection
 
 
 FEEDBACK_EMAIL_EN = """Sent via: {origin}
