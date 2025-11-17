@@ -4,10 +4,13 @@ import path from 'path';
 
 export default defineConfig({
   ...voltoVitestConfig,
+  test: {
+    ...voltoVitestConfig.test,
+    passWithNoTests: true,
+  },
   resolve: {
     alias: {
-      '@plone/volto': path.resolve(__dirname, '../../core/packages/volto/src'), // Add paths accordingly
-      // 'promise-file-reader': require.resolve('promise-file-reader') // Add to identify dependency from package
+      '@plone/volto': path.resolve(__dirname, '../../core/packages/volto/src'),
     },
   },
 });
