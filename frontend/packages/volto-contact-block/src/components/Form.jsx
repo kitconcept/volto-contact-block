@@ -418,7 +418,7 @@ const ContactForm = (props) => {
                 <span
                   className={`checkbox-box age_consent ${state.age_consent ? 'checked' : ''}`}
                 ></span>
-                <label id="age-consent-label">
+                <label id="age-consent-label" className="checkbox-label">
                   {intl.formatMessage(messages.AgeConsent) + ' *'}
                 </label>
               </Checkbox>
