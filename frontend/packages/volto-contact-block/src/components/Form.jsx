@@ -380,7 +380,7 @@ const ContactForm = (props) => {
                 defaultMessage="Our Data Safety Rules"
               />
             </legend>
-            <p>
+            <p className='data-protection'>
               {intl.formatMessage(messages.DataProtection)}{' '}
               <a href="/" target="_blank" rel="noreferrer">
                 <FormattedMessage

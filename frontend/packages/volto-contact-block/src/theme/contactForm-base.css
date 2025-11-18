@@ -5,7 +5,6 @@
 
 .block.contact-list {
   width: 940px;
-
   padding: 75px 1rem 25px;
   color: #000;
 
@@ -31,16 +30,28 @@
     padding: 0;
   }
   .contact-detail {
+    margin-bottom: 75px;
     .contact-list-body {
-      margin-bottom: 65px;
+      margin-bottom: 25px;
 
       div {
         margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 24px;
+      }
+      .description {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
       }
     }
     button {
       padding: 8px 20px;
       border: 1px solid #000;
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 20px;
       background-color: transparent;
       color: #000;
     }
@@ -146,7 +157,7 @@
 
   .fields-row {
     display: flex;
-    gap: 10px;
+    gap: 21px;
   }
   .fields-row > *:first-child {
     flex: 1;
@@ -159,7 +170,7 @@
 
   .field {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
   }
 
   .label {
@@ -330,12 +341,15 @@
     cursor: wait;
     opacity: 0.6;
   }
-
+  .data-protection {
+    margin-bottom: 50px;
+  }
   p.note {
     color: #000;
     font-size: 14px;
     font-weight: 300;
     line-height: 18px;
+    margin-top: 50px;
   }
 
   legend {
@@ -377,5 +391,21 @@
   .contact-detail,
   label {
     color: #000;
+  }
+  .contact-detail {
+    margin-top: 50px;
+    .contact-list-body {
+      div {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 24px;
+      }
+      .description {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+      }
+    }
   }
 }
