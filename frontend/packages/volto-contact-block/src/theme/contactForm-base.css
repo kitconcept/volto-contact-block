@@ -49,11 +49,11 @@
     button {
       padding: 8px 20px;
       border: 1px solid #000;
+      background-color: transparent;
+      color: #000;
       font-size: 16px;
       font-weight: 900;
       line-height: 20px;
-      background-color: transparent;
-      color: #000;
     }
   }
 
@@ -342,15 +342,15 @@
     opacity: 0.6;
   }
   .data-protection {
-    font-size: 18px;
     margin-bottom: 50px;
+    font-size: 18px;
   }
   p.note {
+    margin-top: 50px;
     color: #000;
     font-size: 14px;
     font-weight: 300;
     line-height: 18px;
-    margin-top: 50px;
   }
 
   legend {
