@@ -380,7 +380,7 @@ const ContactForm = (props) => {
                 defaultMessage="Our Data Safety Rules"
               />
             </legend>
-            <p>
+            <p className="data-protection">
               {intl.formatMessage(messages.DataProtection)}{' '}
               <a href="/" target="_blank" rel="noreferrer">
                 <FormattedMessage
@@ -418,7 +418,7 @@ const ContactForm = (props) => {
                 <span
                   className={`checkbox-box age_consent ${state.age_consent ? 'checked' : ''}`}
                 ></span>
-                <label id="age-consent-label">
+                <label id="age-consent-label" className="checkbox-label">
                   {intl.formatMessage(messages.AgeConsent) + ' *'}
                 </label>
               </Checkbox>
