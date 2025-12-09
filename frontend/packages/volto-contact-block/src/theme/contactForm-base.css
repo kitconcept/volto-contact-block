@@ -1,0 +1,396 @@
+#page-edit .block.contact-list {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.block.contact-list {
+  width: 940px;
+  padding: 75px 1rem 25px;
+  color: #000;
+
+  h2 {
+    margin: 0 auto 60px;
+    font-size: 33px;
+    font-weight: 300;
+    line-height: 42px;
+  }
+
+  h3 {
+    margin: 0 auto 25px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+
+  p {
+    color: inherit;
+  }
+
+  .row {
+    padding: 0;
+  }
+  .contact-detail {
+    margin-bottom: 75px;
+    .contact-list-body {
+      margin-bottom: 25px;
+
+      div {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 24px;
+      }
+      .description {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+      }
+    }
+    button {
+      padding: 8px 20px;
+      border: 1px solid #000;
+      background-color: transparent;
+      color: #000;
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 20px;
+    }
+  }
+
+  .position {
+    font-weight: 700;
+  }
+}
+
+.contact-form-modal {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+}
+
+.contact-form-modal-content {
+  overflow: auto;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  padding: 2rem;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+.react-aria-Modal {
+  width: 100%;
+  max-width: 100% !important;
+  height: 100%;
+}
+
+[role='dialog'].scrolling {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.contact-form-container {
+  position: relative;
+}
+
+.contact-form-close-button {
+  position: fixed;
+  z-index: 10000;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #000;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+  font-size: 45px;
+  line-height: 1;
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  &:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+}
+
+.contact-form-overlay {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  box-sizing: border-box;
+  padding: 2rem;
+  margin-right: auto;
+  margin-left: auto;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+  }
+
+  fieldset {
+    width: 100%;
+    max-width: 620px;
+    padding: 0;
+    border: none;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-left: auto;
+  }
+
+  .fields-row {
+    display: flex;
+    gap: 21px;
+  }
+  .fields-row > *:first-child {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .fields-row > *:last-child {
+    flex: 3;
+  }
+
+  .field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .dropdown {
+    position: relative;
+    width: 100%;
+    .button-secondary {
+      width: 100%;
+      height: 65px;
+      padding: 8px 10px;
+      border: solid 1px #b2b2b2;
+      background-color: #f5f5f5;
+      color: #000;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 24px;
+      text-align: center;
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        width: 0;
+        height: 0;
+        border-top: 8px solid #000;
+        border-right: 6px solid transparent;
+        border-left: 6px solid transparent;
+        content: '';
+        pointer-events: none;
+        transform: translateY(-50%);
+      }
+
+      &:hover {
+        border-color: #000;
+      }
+
+      &:focus {
+        outline: 2px solid #000;
+        outline-offset: 2px;
+      }
+
+      &[aria-expanded='true'] {
+        border-color: #000;
+      }
+    }
+  }
+
+  input[type='text'],
+  input[type='email'],
+  textarea {
+    width: 100%;
+    padding: 20px;
+    border: solid 1px #b2b2b2;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+
+    &::placeholder {
+      color: #666;
+      opacity: 1;
+    }
+  }
+
+  textarea {
+    min-height: 250px;
+  }
+
+  .privacy-checkbox {
+    display: flex;
+    cursor: pointer;
+    gap: 16px;
+  }
+
+  .checkbox-box {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 38px;
+    border: 1px solid #b2b2b2;
+    background: transparent;
+    transition: background 0.2s ease-in-out;
+  }
+  .checkbox-box.age_consent {
+    width: 113px;
+  }
+
+  .checkbox-box.checked {
+    border-color: #007eb1;
+  }
+
+  .checkbox-box.checked::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #000;
+    content: '✓';
+    font-size: 40px;
+    font-weight: 200;
+    transform: translate(-50%, -60%);
+  }
+
+  .checkbox-label {
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .error-label {
+    margin-top: 0.25rem;
+    color: red;
+    font-size: 14px;
+  }
+
+  .error-message {
+    padding: 1rem;
+    border: solid 1px red;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    color: red;
+
+    .error-header {
+      margin-bottom: 0.5rem;
+      color: inherit;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      color: inherit;
+    }
+  }
+
+  .submit-button,
+  .cancel-button {
+    padding: 8px 20px;
+    border: 1px solid #000;
+    border-radius: unset;
+    background: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 20px;
+
+    &:hover {
+      background-color: #000;
+      color: white;
+    }
+  }
+
+  .submit-button {
+    margin-right: 30px;
+    opacity: 1;
+  }
+
+  .cancel-button {
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .loading {
+    cursor: wait;
+    opacity: 0.6;
+  }
+  .data-protection {
+    margin-bottom: 50px;
+    font-size: 18px;
+  }
+  p.note {
+    margin-top: 50px;
+    color: #000;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+  }
+
+  legend {
+    margin-bottom: 20px;
+    color: #000;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 46px;
+
+    &.message {
+      margin-bottom: 35px;
+      font-weight: 700;
+    }
+
+    &.sent {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 30px;
+
+      &::before {
+        display: block;
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        margin-bottom: 50px;
+        background-color: #b2b2b2;
+        content: url("data:image/svg+xml;charset=UTF-8,%3csvg width='84' height='84' viewBox='-18 -27 84 84' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M2 16.5L18.5 33L49.5 2' stroke='white' stroke-width='3'/%3e%3c/svg%3e ");
+      }
+    }
+  }
+
+  hr {
+    border: none;
+    border-bottom: solid 1px #b2b2b2;
+    margin: 75px auto;
+  }
+
+  p,
+  .contact-detail,
+  label {
+    color: #000;
+  }
+}

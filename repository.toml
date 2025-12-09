@@ -1,0 +1,37 @@
+[repository]
+name = "volto-contact-block"
+managed_by_uv = false
+changelog = "CHANGELOG.md"
+version = "version.txt"
+compose = "docker-compose.yml"
+
+[repository.towncrier]
+section = "Project"
+settings = "towncrier.toml"
+
+[backend]
+path = "backend"
+
+[backend.package]
+name = "kitconcept.contactblock"
+path = "backend"
+changelog = "backend/CHANGELOG.md"
+towncrier_settings = "backend/pyproject.toml"
+base_package = "Products.CMFPlone"
+publish = false
+
+[frontend]
+path = "frontend"
+
+[frontend.package]
+name = "@kitconcept/volto-contact-block"
+path = "frontend/packages/@kitconcept/volto-contact-block"
+changelog = "frontend/packages/@kitconcept/volto-contact-block/CHANGELOG.md"
+towncrier_settings = "frontend/packages/@kitconcept/volto-contact-block/towncrier.toml"
+base_package = "@plone/volto"
+publish = false
+
+[cookieplone]
+template = "project"
+template_version = "96574af4136cae375cc74be36daed12df6ed6f82"
+generated_date = "2025-12-08 13:50:10"
