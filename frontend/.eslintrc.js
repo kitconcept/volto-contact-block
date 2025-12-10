@@ -29,6 +29,10 @@ module.exports = {
           ['@plone/volto-slate', `${coreLocation}/packages/volto-slate/src`],
           ['@plone/registry', `${coreLocation}/packages/registry/src`],
           [
+            '@kitconcept/volto-light-theme',
+            `${projectRootPath}/packages/volto-light-theme/frontend/packages/volto-light-theme/src`,
+          ],
+          [
             '@kitconcept/volto-contact-block',
             './packages/volto-contact-block/src',
           ],
