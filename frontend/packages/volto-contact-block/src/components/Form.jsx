@@ -228,7 +228,7 @@ const ContactForm = (props) => {
                 defaultMessage="Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email. In urgent cases regarding this issue, please call xxxx xxx xxx"
               />
             </p>
-            <p className='thank-you-message'>
+            <p className="thank-you-message">
               <FormattedMessage
                 id="MessageSentThanks"
                 defaultMessage="Thank you for contacting us."
@@ -268,7 +268,11 @@ const ContactForm = (props) => {
                 maxLength={100}
               />
             </TextField>
-            <TextField name="message" className="field field-message" isRequired>
+            <TextField
+              name="message"
+              className="field field-message"
+              isRequired
+            >
               <TextArea
                 id="message"
                 aria-label={intl.formatMessage(messages.Message)}
@@ -359,7 +363,7 @@ const ContactForm = (props) => {
             </p>
           </fieldset>
           <hr />
-          <fieldset className='overlay-contact'>
+          <fieldset className="overlay-contact">
             <legend>
               <FormattedMessage
                 id="Addressee"

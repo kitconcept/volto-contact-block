@@ -106,7 +106,7 @@ msgstr ""
 msgid "Mandatory"
 msgstr ""
 
-#. Default: "Your message has been successfully delivered to \"{name}\""
+#. Default: "Your message has been successfully, delivered to \"{name}\""
 #: components/Form
 msgid "MessageSent"
 msgstr ""
