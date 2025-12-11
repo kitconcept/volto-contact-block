@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import {
-  Form as AriaForm,
   Button,
+  Form as AriaForm,
   TextField,
   Input,
   TextArea,
@@ -202,9 +202,7 @@ const ContactForm = (props) => {
       className="contact-form-close-button"
       onClick={props.onCancel}
       aria-label={intl.formatMessage(messages.CloseWindow)}
-    >
-      ×
-    </button>
+    />
   );
 
   return (
@@ -212,11 +210,11 @@ const ContactForm = (props) => {
       {closeButton}
       {loaded ? (
         <div className="contact-form">
-          <fieldset>
+          <fieldset className="contact-fieldset">
             <legend className="sent">
               <FormattedMessage
                 id="MessageSent"
-                defaultMessage='Your message has been successfully delivered to "{name}"'
+                defaultMessage='Your message has been successfully, delivered to "{name}"'
                 values={{
                   name:
                     contact.title ||
@@ -224,19 +222,19 @@ const ContactForm = (props) => {
                 }}
               />
             </legend>
-            <p>
+            <p className="sentConfirmation">
               <FormattedMessage
                 id="MessageSentDetails"
                 defaultMessage="Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email. In urgent cases regarding this issue, please call xxxx xxx xxx"
               />
             </p>
-            <p>
+            <p className='thank-you-message'>
               <FormattedMessage
                 id="MessageSentThanks"
                 defaultMessage="Thank you for contacting us."
               />
             </p>
-            <Button onClick={() => props.onCancel()}>
+            <Button onClick={() => props.onCancel()} className="closeButton">
               {intl.formatMessage(messages.CloseWindow)}
             </Button>
           </fieldset>
@@ -270,7 +268,7 @@ const ContactForm = (props) => {
                 maxLength={100}
               />
             </TextField>
-            <TextField name="message" className="field" isRequired>
+            <TextField name="message" className="field field-message" isRequired>
               <TextArea
                 id="message"
                 aria-label={intl.formatMessage(messages.Message)}
@@ -361,7 +359,7 @@ const ContactForm = (props) => {
             </p>
           </fieldset>
           <hr />
-          <fieldset>
+          <fieldset className='overlay-contact'>
             <legend>
               <FormattedMessage
                 id="Addressee"
