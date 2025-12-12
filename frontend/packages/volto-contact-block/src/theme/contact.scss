@@ -1,3 +1,34 @@
+@mixin contact-detail-styles() {
+  div {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+  }
+
+  .description {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  h3 {
+    margin: 0 auto 25px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+}
+@mixin button-styles() {
+  padding: 8px 20px;
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 20px;
+}
+
 #page-edit .block.contact-list {
   margin-right: auto;
   margin-left: auto;
@@ -33,27 +64,10 @@
     margin-bottom: 75px;
     .contact-list-body {
       margin-bottom: 25px;
-
-      div {
-        margin-bottom: 10px;
-        font-size: 18px;
-        font-weight: 300;
-        line-height: 24px;
-      }
-      .description {
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 24px;
-      }
+      @include contact-detail-styles();
     }
     button {
-      padding: 8px 20px;
-      border: 1px solid #000;
-      background-color: transparent;
-      color: #000;
-      font-size: 16px;
-      font-weight: 900;
-      line-height: 20px;
+      @include button-styles();
     }
   }
 
@@ -93,9 +107,49 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
-
 .contact-form-container {
-  position: relative;
+  @include narrow-container-width;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.contact-form {
+  &::before {
+    display: block;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    margin-bottom: 50px;
+    background-color: #cad55c;
+    content: url("data:image/svg+xml;charset=UTF-8,%3csvg width='84' height='84' viewBox='-18 -27 84 84' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M2 16.5L18.5 33L49.5 2' stroke='white' stroke-width='3'/%3e%3c/svg%3e ");
+  }
+}
+.contact-fieldset {
+  padding: 0;
+  border: none;
+
+  p {
+    color: #000;
+  }
+  .sent {
+    margin-bottom: 50px;
+    color: #000;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+  }
+  .thank-you-message {
+    margin-bottom: 0px;
+  }
+  .sent-confirmation {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+  }
+
+  .close-button {
+    margin-top: 50px;
+    @include button-styles();
+  }
 }
 
 .contact-form-close-button {
@@ -103,7 +157,6 @@
   z-index: 10000;
   top: 2rem;
   right: 2rem;
-  display: flex;
   width: 48px;
   height: 48px;
   align-items: center;
@@ -115,6 +168,10 @@
   cursor: pointer;
   font-size: 45px;
   line-height: 1;
+
+  &::before {
+    content: '×';
+  }
 
   &:hover {
     background-color: #000;
@@ -151,7 +208,6 @@
     padding: 0;
     border: none;
     margin-right: auto;
-    margin-bottom: 50px;
     margin-left: auto;
   }
 
@@ -172,7 +228,9 @@
     width: 100%;
     margin-bottom: 20px;
   }
-
+  .field-message {
+    margin-bottom: 50px;
+  }
   .label {
     display: none;
   }
@@ -251,14 +309,12 @@
   .checkbox-box {
     position: relative;
     display: inline-block;
-    width: 90px;
-    height: 38px;
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
     border: 1px solid #b2b2b2;
     background: transparent;
     transition: background 0.2s ease-in-out;
-  }
-  .checkbox-box.age_consent {
-    width: 113px;
   }
 
   .checkbox-box.checked {
@@ -308,15 +364,7 @@
 
   .submit-button,
   .cancel-button {
-    padding: 8px 20px;
-    border: 1px solid #000;
-    border-radius: unset;
-    background: none;
-    color: #000;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 900;
-    line-height: 20px;
+    @include button-styles();
 
     &:hover {
       background-color: #000;
@@ -354,31 +402,15 @@
   }
 
   legend {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     color: #000;
     font-size: 30px;
     font-weight: 300;
     line-height: 46px;
 
     &.message {
-      margin-bottom: 35px;
+      margin-bottom: 50px;
       font-weight: 700;
-    }
-
-    &.sent {
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 30px;
-
-      &::before {
-        display: block;
-        width: 84px;
-        height: 84px;
-        border-radius: 50%;
-        margin-bottom: 50px;
-        background-color: #b2b2b2;
-        content: url("data:image/svg+xml;charset=UTF-8,%3csvg width='84' height='84' viewBox='-18 -27 84 84' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M2 16.5L18.5 33L49.5 2' stroke='white' stroke-width='3'/%3e%3c/svg%3e ");
-      }
     }
   }
 
@@ -392,5 +424,12 @@
   .contact-detail,
   label {
     color: #000;
+  }
+
+  .overlay-contact .contact-detail {
+    .contact-list-body {
+      margin-bottom: 0;
+      @include contact-detail-styles();
+    }
   }
 }

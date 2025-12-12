@@ -3,7 +3,6 @@ import type { BlockConfigBase } from '@plone/types';
 import installSettings from './config/settings';
 import installReducer from './config/reducers';
 import blockConfig from './components';
-import './theme/contactForm-base.css';
 
 declare module '@plone/types' {
   export interface BlocksConfigData {

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2025-12-10T11:04:42.157Z\n"
+"POT-Creation-Date: 2025-12-11T12:06:52.021Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -103,7 +103,7 @@ msgstr ""
 msgid "Mandatory"
 msgstr ""
 
-#. Default: "Your message has been successfully delivered to \"{name}\""
+#. Default: "Your message has been successfully, delivered to \"{name}\""
 #: components/Form
 msgid "MessageSent"
 msgstr ""
