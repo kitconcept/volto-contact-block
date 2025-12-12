@@ -8,7 +8,6 @@ import {
   Input,
   TextArea,
   Checkbox,
-  Label,
   Select,
   SelectValue,
   Popover,
@@ -26,10 +25,6 @@ const messages = defineMessages({
   Salutation: {
     id: 'Salutation',
     defaultMessage: 'Salutation',
-  },
-  Divers: {
-    id: 'Divers',
-    defaultMessage: 'Divers',
   },
   Mrs: {
     id: 'Mrs',
@@ -86,23 +81,6 @@ const messages = defineMessages({
     id: 'Error',
     defaultMessage: 'Error',
   },
-  SecurityHeading: {
-    id: 'Security measure: Please confirm that you are human',
-    defaultMessage: 'Security measure: Please confirm that you are human',
-  },
-  SecurityIntro: {
-    id: 'This captcha is a security measure to help prevent spam and abuse. Please enter the requested information in the field below the captcha image to confirm you are not a robot. Thank you for your help!',
-    defaultMessage:
-      'This captcha is a security measure to help prevent spam and abuse. Please enter the requested information in the field below the captcha image to confirm you are not a robot. Thank you for your help!',
-  },
-  SecurityLabel: {
-    id: 'Please enter the letters from the CAPTCHA image here:',
-    defaultMessage: 'Please enter the letters from the CAPTCHA image here:',
-  },
-  CaptchaPlaceholder: {
-    id: 'CAPTCHA-Letters',
-    defaultMessage: 'CAPTCHA-Letters',
-  },
 });
 
 const ContactForm = (props) => {
@@ -117,26 +95,22 @@ const ContactForm = (props) => {
     return () => dispatch(resetContactForm());
   }, [contact, dispatch]);
 
-  const { ticket, loading, loaded, serverError, lang } = useSelector(
-    (state) => ({
-      ticket: state.contactform.ticket,
-      loading: state.contactform.loading,
-      loaded: state.contactform.loaded,
-      serverError: state.contactform.error,
-      lang: state.intl.locale,
-    }),
-  );
+  const { ticket, loading, loaded, serverError } = useSelector((state) => ({
+    ticket: state.contactform.ticket,
+    loading: state.contactform.loading,
+    loaded: state.contactform.loaded,
+    serverError: state.contactform.error,
+  }));
 
   const [error, setError] = React.useState({});
   const [state, setState] = React.useState({
-    salutation: '',
+    salutation: null,
     name: '',
     email: '',
     subject: '',
     message: '',
     privacy_consent: false,
     age_consent: false,
-    captcha: '',
   });
   const onChangeHandler = (event, data) => {
     if (data.name === 'privacy_consent' || data.name === 'age_consent') {
@@ -175,7 +149,6 @@ const ContactForm = (props) => {
         name: state.name,
         email: state.email,
         origin: context['@id'],
-        captcha: state.captcha,
       }),
     );
   };
@@ -184,17 +157,6 @@ const ContactForm = (props) => {
     { value: 'Frau', text: intl.formatMessage(messages.Mrs) },
     { value: 'Herr', text: intl.formatMessage(messages.Mr) },
   ];
-  if (lang === 'de') {
-    salutationOptions.unshift({
-      value: 'Divers',
-      text: intl.formatMessage(messages.Divers),
-    });
-  } else {
-    salutationOptions.unshift({
-      value: '',
-      text: ' ',
-    });
-  }
 
   const closeButton = (
     <button
@@ -295,14 +257,9 @@ const ContactForm = (props) => {
             </legend>
             <div className="fields-row">
               <div className="field">
-                <Label
-                  className="label"
-                  aria-label={intl.formatMessage(messages.Salutation)}
-                >
-                  {intl.formatMessage(messages.Salutation)}
-                </Label>
                 <Select
                   selectedKey={state.salutation}
+                  placeholder={intl.formatMessage(messages.Salutation)}
                   onSelectionChange={(key) =>
                     onChangeHandler(null, {
                       name: 'salutation',
@@ -328,7 +285,7 @@ const ContactForm = (props) => {
                   </Popover>
                 </Select>
               </div>
-              <TextField name="name" className="field">
+              <TextField name="name" className="field" isRequired>
                 <Input
                   id="name"
                   name="name"
@@ -427,8 +384,6 @@ const ContactForm = (props) => {
               {error.age_consent && <div className="error-label">*</div>}
             </div>
           </fieldset>
-          {/* // ###captcha */}
-
           <hr />
           <fieldset>
             {serverError && (

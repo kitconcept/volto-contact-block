@@ -2,7 +2,7 @@ import React from 'react';
 import { Heading } from 'react-aria-components';
 import { defineMessages, useIntl } from 'react-intl';
 import ContactBody from './Body';
-import { withBlockExtensions } from '@plone/volto/helpers';
+import { withBlockExtensions } from '@plone/volto/helpers/Extensions';
 
 const messages = defineMessages({
   PleaseChooseContact: {
