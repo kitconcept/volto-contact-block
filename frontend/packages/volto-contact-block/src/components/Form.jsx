@@ -222,7 +222,7 @@ const ContactForm = (props) => {
                 }}
               />
             </legend>
-            <p className="sentConfirmation">
+            <p className="sent-confirmation">
               <FormattedMessage
                 id="MessageSentDetails"
                 defaultMessage="Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email. In urgent cases regarding this issue, please call xxxx xxx xxx"
@@ -234,7 +234,7 @@ const ContactForm = (props) => {
                 defaultMessage="Thank you for contacting us."
               />
             </p>
-            <Button onClick={() => props.onCancel()} className="closeButton">
+            <Button onClick={() => props.onCancel()} className="close-button">
               {intl.formatMessage(messages.CloseWindow)}
             </Button>
           </fieldset>
