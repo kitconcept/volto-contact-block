@@ -1662,9 +1662,6 @@ importers:
 
   packages/volto-contact-block:
     dependencies:
-      '@kitconcept/volto-light-theme':
-        specifier: workspace:*
-        version: link:../volto-light-theme/frontend/packages/volto-light-theme
       react:
         specifier: ^18.2.0
         version: 18.2.0
