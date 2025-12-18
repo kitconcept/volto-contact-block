@@ -187,7 +187,7 @@ const ContactForm = (props) => {
             <p className="sent-confirmation">
               <FormattedMessage
                 id="MessageSentDetails"
-                defaultMessage="Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email. In urgent cases regarding this issue, please call xxxx xxx xxx"
+                defaultMessage="Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email.  For urgent cases regarding this issue, please call our IT hotline."
               />
             </p>
             <p className="thank-you-message">
