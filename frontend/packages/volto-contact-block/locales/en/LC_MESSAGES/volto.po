@@ -21,11 +21,6 @@ msgstr ""
 msgid "Addressee"
 msgstr ""
 
-#. Default: "CAPTCHA-Letters"
-#: components/Form
-msgid "CAPTCHA-Letters"
-msgstr ""
-
 #. Default: "Cancel"
 #: components/Form
 msgid "Cancel"
@@ -66,11 +61,6 @@ msgstr ""
 msgid "Contacts List"
 msgstr ""
 
-#. Default: "Divers"
-#: components/Form
-msgid "Divers"
-msgstr ""
-
 #. Default: "Error"
 #: components/Form
 msgid "Error"
@@ -106,7 +96,7 @@ msgstr ""
 msgid "MessageSent"
 msgstr ""
 
-#. Default: "Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email. In urgent cases regarding this issue, please call xxxx xxx xxx"
+#. Default: "Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email.  For urgent cases regarding this issue, please call our IT hotline."
 #: components/Form
 msgid "MessageSentDetails"
 msgstr ""
@@ -141,9 +131,9 @@ msgstr ""
 msgid "Please choose an existing contact as source for this element"
 msgstr ""
 
-#. Default: "Please enter the letters from the CAPTCHA image here:"
+#. Default: "privacy-policy"
 #: components/Form
-msgid "Please enter the letters from the CAPTCHA image here:"
+msgid "Privacy Policy Link"
 msgstr ""
 
 #. Default: "Privacy Policy"
@@ -156,11 +146,6 @@ msgstr ""
 msgid "Salutation"
 msgstr ""
 
-#. Default: "Security measure: Please confirm that you are human"
-#: components/Form
-msgid "Security measure: Please confirm that you are human"
-msgstr ""
-
 #. Default: "Send Message"
 #: components/Form
 msgid "Send Message"
@@ -169,11 +154,6 @@ msgstr ""
 #. Default: "Source"
 #: components/schema
 msgid "Source"
-msgstr ""
-
-#. Default: "This captcha is a security measure to help prevent spam and abuse. Please enter the requested information in the field below the captcha image to confirm you are not a robot. Thank you for your help!"
-#: components/Form
-msgid "This captcha is a security measure to help prevent spam and abuse. Please enter the requested information in the field below the captcha image to confirm you are not a robot. Thank you for your help!"
 msgstr ""
 
 #. Default: "Your Contact Info"

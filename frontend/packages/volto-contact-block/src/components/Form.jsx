@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import {
   Button,
@@ -14,6 +15,7 @@ import {
   ListBox,
   ListBoxItem,
 } from 'react-aria-components';
+import config from '@plone/volto/registry';
 import {
   getContactFormTicket,
   submitContactForm,
@@ -81,13 +83,18 @@ const messages = defineMessages({
     id: 'Error',
     defaultMessage: 'Error',
   },
+  privacyPolicy: {
+    id: 'Privacy Policy Link',
+    defaultMessage: 'privacy-policy',
+  },
 });
 
 const ContactForm = (props) => {
   const intl = useIntl();
   const { contact, context } = props;
-
+  const currentLang = useSelector((state) => state.intl.locale);
   const dispatch = useDispatch();
+  const isMultilingual = config.settings.isMultilingual;
   useEffect(() => {
     // Get form ticket after component is mounted
     dispatch(getContactFormTicket(contact['@id']));
@@ -341,12 +348,14 @@ const ContactForm = (props) => {
             </legend>
             <p className="data-protection">
               {intl.formatMessage(messages.DataProtection)}{' '}
-              <a href="/" target="_blank" rel="noreferrer">
+              <Link
+                to={`${isMultilingual ? `/${currentLang}` : ''}/${intl.formatMessage(messages.privacyPolicy)}`}
+              >
                 <FormattedMessage
                   id="PrivacyPolicy"
                   defaultMessage="Privacy Policy"
                 />
-              </a>
+              </Link>
             </p>
             <div className="field">
               <Checkbox
