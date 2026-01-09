@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import {
   Button,
@@ -8,13 +9,13 @@ import {
   Input,
   TextArea,
   Checkbox,
-  Label,
   Select,
   SelectValue,
   Popover,
   ListBox,
   ListBoxItem,
 } from 'react-aria-components';
+import config from '@plone/volto/registry';
 import {
   getContactFormTicket,
   submitContactForm,
@@ -26,10 +27,6 @@ const messages = defineMessages({
   Salutation: {
     id: 'Salutation',
     defaultMessage: 'Salutation',
-  },
-  Divers: {
-    id: 'Divers',
-    defaultMessage: 'Divers',
   },
   Mrs: {
     id: 'Mrs',
@@ -86,30 +83,18 @@ const messages = defineMessages({
     id: 'Error',
     defaultMessage: 'Error',
   },
-  SecurityHeading: {
-    id: 'Security measure: Please confirm that you are human',
-    defaultMessage: 'Security measure: Please confirm that you are human',
-  },
-  SecurityIntro: {
-    id: 'This captcha is a security measure to help prevent spam and abuse. Please enter the requested information in the field below the captcha image to confirm you are not a robot. Thank you for your help!',
-    defaultMessage:
-      'This captcha is a security measure to help prevent spam and abuse. Please enter the requested information in the field below the captcha image to confirm you are not a robot. Thank you for your help!',
-  },
-  SecurityLabel: {
-    id: 'Please enter the letters from the CAPTCHA image here:',
-    defaultMessage: 'Please enter the letters from the CAPTCHA image here:',
-  },
-  CaptchaPlaceholder: {
-    id: 'CAPTCHA-Letters',
-    defaultMessage: 'CAPTCHA-Letters',
+  privacyPolicy: {
+    id: 'Privacy Policy Link',
+    defaultMessage: 'privacy-policy',
   },
 });
 
 const ContactForm = (props) => {
   const intl = useIntl();
   const { contact, context } = props;
-
+  const currentLang = useSelector((state) => state.intl.locale);
   const dispatch = useDispatch();
+  const isMultilingual = config.settings.isMultilingual;
   useEffect(() => {
     // Get form ticket after component is mounted
     dispatch(getContactFormTicket(contact['@id']));
@@ -117,26 +102,22 @@ const ContactForm = (props) => {
     return () => dispatch(resetContactForm());
   }, [contact, dispatch]);
 
-  const { ticket, loading, loaded, serverError, lang } = useSelector(
-    (state) => ({
-      ticket: state.contactform.ticket,
-      loading: state.contactform.loading,
-      loaded: state.contactform.loaded,
-      serverError: state.contactform.error,
-      lang: state.intl.locale,
-    }),
-  );
+  const { ticket, loading, loaded, serverError } = useSelector((state) => ({
+    ticket: state.contactform.ticket,
+    loading: state.contactform.loading,
+    loaded: state.contactform.loaded,
+    serverError: state.contactform.error,
+  }));
 
   const [error, setError] = React.useState({});
   const [state, setState] = React.useState({
-    salutation: '',
+    salutation: null,
     name: '',
     email: '',
     subject: '',
     message: '',
     privacy_consent: false,
     age_consent: false,
-    captcha: '',
   });
   const onChangeHandler = (event, data) => {
     if (data.name === 'privacy_consent' || data.name === 'age_consent') {
@@ -175,7 +156,6 @@ const ContactForm = (props) => {
         name: state.name,
         email: state.email,
         origin: context['@id'],
-        captcha: state.captcha,
       }),
     );
   };
@@ -184,17 +164,6 @@ const ContactForm = (props) => {
     { value: 'Frau', text: intl.formatMessage(messages.Mrs) },
     { value: 'Herr', text: intl.formatMessage(messages.Mr) },
   ];
-  if (lang === 'de') {
-    salutationOptions.unshift({
-      value: 'Divers',
-      text: intl.formatMessage(messages.Divers),
-    });
-  } else {
-    salutationOptions.unshift({
-      value: '',
-      text: ' ',
-    });
-  }
 
   const closeButton = (
     <button
@@ -225,7 +194,7 @@ const ContactForm = (props) => {
             <p className="sent-confirmation">
               <FormattedMessage
                 id="MessageSentDetails"
-                defaultMessage="Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email. In urgent cases regarding this issue, please call xxxx xxx xxx"
+                defaultMessage="Usually staff will get back to you within 2-3 business days. Please note that for security reasons we will not send you a confirmation email.  For urgent cases regarding this issue, please call our IT hotline."
               />
             </p>
             <p className="thank-you-message">
@@ -295,14 +264,9 @@ const ContactForm = (props) => {
             </legend>
             <div className="fields-row">
               <div className="field">
-                <Label
-                  className="label"
-                  aria-label={intl.formatMessage(messages.Salutation)}
-                >
-                  {intl.formatMessage(messages.Salutation)}
-                </Label>
                 <Select
                   selectedKey={state.salutation}
+                  placeholder={intl.formatMessage(messages.Salutation)}
                   onSelectionChange={(key) =>
                     onChangeHandler(null, {
                       name: 'salutation',
@@ -328,7 +292,7 @@ const ContactForm = (props) => {
                   </Popover>
                 </Select>
               </div>
-              <TextField name="name" className="field">
+              <TextField name="name" className="field" isRequired>
                 <Input
                   id="name"
                   name="name"
@@ -384,12 +348,14 @@ const ContactForm = (props) => {
             </legend>
             <p className="data-protection">
               {intl.formatMessage(messages.DataProtection)}{' '}
-              <a href="/" target="_blank" rel="noreferrer">
+              <Link
+                to={`${isMultilingual ? `/${currentLang}` : ''}/${intl.formatMessage(messages.privacyPolicy)}`}
+              >
                 <FormattedMessage
                   id="PrivacyPolicy"
                   defaultMessage="Privacy Policy"
                 />
-              </a>
+              </Link>
             </p>
             <div className="field">
               <Checkbox
@@ -427,8 +393,6 @@ const ContactForm = (props) => {
               {error.age_consent && <div className="error-label">*</div>}
             </div>
           </fieldset>
-          {/* // ###captcha */}
-
           <hr />
           <fieldset>
             {serverError && (

@@ -1,4 +1,6 @@
 import { defineMessages } from 'react-intl';
+import type { BlockEditProps } from '@plone/types';
+import type { IntlShape } from 'react-intl';
 
 const messages = defineMessages({
   Source: {
@@ -27,9 +29,13 @@ const messages = defineMessages({
   },
 });
 
-const itemSchema = (props) => {
-  const { intl } = props;
-
+const itemSchema = ({
+  props,
+  intl,
+}: {
+  props: BlockEditProps;
+  intl: IntlShape;
+}) => {
   return {
     title: intl.formatMessage(messages.item),
     addMessage: intl.formatMessage(messages.addItem),
@@ -53,9 +59,13 @@ const itemSchema = (props) => {
   };
 };
 
-export const ContactListSchema = (props) => {
-  const { intl } = props;
-
+export const ContactListSchema = ({
+  props,
+  intl,
+}: {
+  props: BlockEditProps;
+  intl: IntlShape;
+}) => {
   return {
     title: intl.formatMessage(messages.contactList),
     block: 'contactList',
@@ -74,7 +84,7 @@ export const ContactListSchema = (props) => {
       hrefList: {
         widget: 'object_list',
         title: intl.formatMessage(messages.items),
-        schema: itemSchema,
+        schema: itemSchema({ props, intl }),
       },
     },
     required: [],

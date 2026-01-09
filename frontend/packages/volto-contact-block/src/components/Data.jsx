@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BlockDataForm } from '@plone/volto/components';
+import { BlockDataForm } from '@plone/volto/components/manage/Form';
 import { useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { ContactListSchema } from './schema';
 import withObjectBrowser from '@plone/volto/components/manage/Sidebar/ObjectBrowser';
-import { getContent } from '@plone/volto/actions';
+import { getContent } from '@plone/volto/actions/content/content';
+import { usePrevious } from '@plone/volto/helpers/Utils/usePrevious';
 import {
   difference,
   replaceItemOfArray,
-  usePrevious,
-} from '@plone/volto/helpers';
+} from '@plone/volto/helpers/Utils/Utils';
+import compact from 'lodash/compact';
 
 const ContactListData = (props) => {
-  const { block, data, onChangeBlock } = props;
+  const { block, data, onChangeBlock, navRoot, contentType, blocksErrors } =
+    props;
   const { hrefList } = props.data;
   const dispatch = useDispatch();
   const previous = usePrevious(hrefList);
@@ -25,6 +27,8 @@ const ContactListData = (props) => {
       const diff = difference(hrefList, previous);
       const index = diff.findIndex((val) => val);
       const href = diff[index]?.href?.[0]?.['@id'];
+      const isReordering = compact(diff).length > 1;
+      if (isReordering) return;
       if (href) {
         dispatch(getContent(href, null, block)).then((resp) => {
           const itemData = { '@id': href };
@@ -63,8 +67,12 @@ const ContactListData = (props) => {
           [id]: value,
         });
       }}
+      onChangeBlock={onChangeBlock}
       formData={data}
       block={block}
+      navRoot={navRoot}
+      contentType={contentType}
+      errors={blocksErrors}
     />
   );
 };

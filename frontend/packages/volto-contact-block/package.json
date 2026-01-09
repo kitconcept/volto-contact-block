@@ -29,8 +29,7 @@
   "addons": [],
   "theme": "",
   "dependencies": {
-    "react-aria-components": "^1.13.0",
-    "@kitconcept/volto-light-theme": "workspace:*"
+    "react-aria-components": "^1.13.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",
