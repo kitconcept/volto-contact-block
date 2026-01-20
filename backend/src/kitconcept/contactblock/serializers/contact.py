@@ -69,7 +69,7 @@ class ContactListBlockSerializer:
                 )
                 value = serializer()
                 href[fieldname] = value
-            href["has_email"] = bool(getattr(contact, "email", None))
+            href["has_email"] = bool(getattr(contact, "contact_email", None))
             hrefList.append(item)
         block["hrefList"] = hrefList
         return block
