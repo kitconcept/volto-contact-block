@@ -7,4 +7,9 @@
       name="kitconcept.contactblock.summary_serializer_metadata"
       />
 
+  <subscriber
+      factory=".contact.ContactListBlockSerializer"
+      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+      />
+
 </configure>
