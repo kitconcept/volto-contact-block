@@ -25,9 +25,9 @@ path = "frontend"
 
 [frontend.package]
 name = "@kitconcept/volto-contact-block"
-path = "frontend/packages/@kitconcept/volto-contact-block"
-changelog = "frontend/packages/@kitconcept/volto-contact-block/CHANGELOG.md"
-towncrier_settings = "frontend/packages/@kitconcept/volto-contact-block/towncrier.toml"
+path = "frontend/packages/volto-contact-block"
+changelog = "frontend/packages/volto-contact-block/CHANGELOG.md"
+towncrier_settings = "frontend/packages/volto-contact-block/towncrier.toml"
 base_package = "@plone/volto"
 publish = false
 
