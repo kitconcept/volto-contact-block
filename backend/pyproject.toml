@@ -4,7 +4,7 @@ dynamic = ["version"]
 description = "Contact block by kitconcept"
 readme = "README.md"
 license = "GPL-2.0-only"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [
     { name = "kitconcept, GmbH", email = "info@kitconcept.com" },
 ]
@@ -21,7 +21,6 @@ classifiers = [
     "Framework :: Plone :: Addon",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
