@@ -49,7 +49,6 @@ jobs:
     name: "Storybook"
     uses: plone/meta/.github/workflows/frontend-storybook.yml@2.x
     needs:
-        - config
         - code-analysis
         - unit
         - i18n
