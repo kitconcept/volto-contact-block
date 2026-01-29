@@ -4,7 +4,7 @@ Contact block by kitconcept
 
 ## Features
 
-TODO: List our awesome features
+* Serializer used by the Contact Block
 
 ## Installation
 

@@ -8,16 +8,12 @@ SHELL:=bash
 MAKEFLAGS+=--warn-undefined-variables
 MAKEFLAGS+=--no-builtin-rules
 
-# We like colors
+# We like colors!!
 # From: https://coderwall.com/p/izxssa/colored-makefile-for-golang-projects
 RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
-
-IMAGE_NAME_PREFIX=ghcr.io/kitconcept/volto-contact-block
-IMAGE_TAG=latest
-
 # Python checks
 UV?=uv
 
@@ -26,10 +22,16 @@ ifeq (, $(shell which $(UV) ))
   $(error "UV=$(UV) not found in $(PATH)")
 endif
 
+REPOSITORY_SETTINGS := $(shell uvx repoplone settings dump)
+IMAGE_NAME_PREFIX := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.container_images_prefix')
+
+IMAGE_TAG=latest
+IMAGE_NAME=$(IMAGE_NAME_PREFIX)-backend:$(IMAGE_TAG)
 PLONE_SITE_ID=Plone
 BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-PLONE_VERSION=$(shell cat $(BACKEND_FOLDER)/version.txt)
-EXAMPLE_CONTENT_FOLDER=${BACKEND_FOLDER}/src/kitconcept/contactblock/setuphandlers/examplecontent
+PLONE_VERSION := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.backend.base_package_version')
+EXAMPLE_CONTENT_FOLDER := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.backend.code_path')/setuphandlers/examplecontent
+PACKAGE_NAME := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.backend.name')
 
 VENV_FOLDER=$(BACKEND_FOLDER)/.venv
 export VIRTUAL_ENV=$(VENV_FOLDER)
@@ -39,9 +41,6 @@ BIN_FOLDER=$(VENV_FOLDER)/bin
 export PYTHONWARNINGS := ignore
 export DOCKER_BUILDKIT := 1
 
-## Enable Printing MailHost by default, unless the environment variable is set to False
-export ENABLE_PRINTING_MAILHOST ?= True
-
 all: build
 
 # Add the following 'help' target to your Makefile
@@ -50,6 +49,11 @@ all: build
 help: ## This help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+.PHONY: debug-settings
+debug-settings:  ## Debug settings
+	@echo "PLONE_VERSION: $(PLONE_VERSION)"
+	@echo "EXAMPLE_CONTENT_FOLDER: $(EXAMPLE_CONTENT_FOLDER)"
+
 requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
 	@echo "$(GREEN)==> Generate constraints file$(RESET)"
 	@echo '-c https://dist.plone.org/release/$(PLONE_VERSION)/constraints.txt' > requirements.txt
@@ -57,11 +61,7 @@ requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
 
 $(VENV_FOLDER): requirements-mxdev.txt ## Install dependencies
 	@echo "$(GREEN)==> Install environment$(RESET)"
-ifdef CI
 	@uv venv $(VENV_FOLDER)
-else
-	@uv venv --python=3.12 $(VENV_FOLDER)
-endif
 	@uv pip install -r requirements-mxdev.txt
 
 .PHONY: sync
@@ -91,22 +91,22 @@ remove-data: ## Remove all content
 
 .PHONY: start
 start: $(VENV_FOLDER) instance/etc/zope.ini ## Start a Plone instance on localhost:8080
-	@$(BIN_FOLDER)/runwsgi instance/etc/zope.ini
+	@uv run runwsgi instance/etc/zope.ini
 
 .PHONY: console
 console: $(VENV_FOLDER) instance/etc/zope.ini ## Start a console into a Plone instance
-	@$(BIN_FOLDER)/zconsole debug instance/etc/zope.conf
+	@uv run zconsole debug instance/etc/zope.conf
 
 .PHONY: create-site
 create-site: $(VENV_FOLDER) instance/etc/zope.ini ## Create a new site from scratch
-	@$(BIN_FOLDER)/zconsole run instance/etc/zope.conf ./scripts/create_site.py
+	@uv run zconsole run instance/etc/zope.conf ./scripts/create_site.py
 
 # Example Content
 .PHONY: update-example-content
 update-example-content: $(VENV_FOLDER) ## Export example content inside package
 	@echo "$(GREEN)==> Export example content into $(EXAMPLE_CONTENT_FOLDER) $(RESET)"
 	if [ -d $(EXAMPLE_CONTENT_FOLDER)/content ]; then rm -r $(EXAMPLE_CONTENT_FOLDER)/* ;fi
-	@$(BIN_FOLDER)/plone-exporter instance/etc/zope.conf $(PLONE_SITE_ID) $(EXAMPLE_CONTENT_FOLDER)
+	@uv run plone-exporter instance/etc/zope.conf $(PLONE_SITE_ID) $(EXAMPLE_CONTENT_FOLDER)
 
 # QA
 .PHONY: lint
@@ -128,16 +128,16 @@ format: ## Check and fix code base according to Plone standards
 .PHONY: i18n
 i18n: $(VENV_FOLDER) ## Update locales
 	@echo "$(GREEN)==> Updating locales$(RESET)"
-	@$(BIN_FOLDER)/python -m kitconcept.contactblock.locales
+	@uv run python -m collective.techevent.locales
 
 # Tests
 .PHONY: test
 test: $(VENV_FOLDER) ## run tests
-	@$(BIN_FOLDER)/pytest
+	@uv run pytest
 
 .PHONY: test-coverage
 test-coverage: $(VENV_FOLDER) ## run tests with coverage
-	@$(BIN_FOLDER)/pytest --cov=kitconcept.contactblock --cov-report term-missing
+	@uv run pytest --cov=collective.techevent --cov-report term-missing
 
 # Build Docker images
 .PHONY: build-image
@@ -147,7 +147,7 @@ build-image:  ## Build Docker Images
 # Acceptance tests
 .PHONY: acceptance-backend-start
 acceptance-backend-start: ## Start backend acceptance server
-	ZSERVER_HOST=0.0.0.0 ZSERVER_PORT=55001 LISTEN_PORT=55001 APPLY_PROFILES="kitconcept.contactblock:default" CONFIGURE_PACKAGES="plone.restapi,plone.volto,plone.volto.cors,kitconcept.contactblock" $(BIN_FOLDER)/robot-server plone.app.robotframework.testing.VOLTO_ROBOT_TESTING
+	ZSERVER_HOST=0.0.0.0 ZSERVER_PORT=55001 LISTEN_PORT=55001 APPLY_PROFILES="collective.techevent:default" CONFIGURE_PACKAGES="plone.restapi,plone.volto,plone.volto.cors,collective.techevent" $(BIN_FOLDER)/robot-server plone.app.robotframework.testing.VOLTO_ROBOT_TESTING
 
 .PHONY: acceptance-image-build
 acceptance-image-build:  ## Build Docker Images
@@ -155,4 +155,4 @@ acceptance-image-build:  ## Build Docker Images
 
 ## Add bobtemplates features (check bobtemplates.plone's documentation to get the list of available features)
 add: $(VENV_FOLDER)
-	@uvx plonecli add $(filter-out $@,$(MAKECMDGOALS))
+	@uvx plonecli add -b .mrbob.ini $(filter-out $@,$(MAKECMDGOALS))

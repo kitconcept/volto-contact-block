@@ -1,5 +1,5 @@
-from plone.dexterity.utils import iterSchemata
 from kitconcept.contactblock.serializers import path_to_object
+from plone.dexterity.utils import iterSchemata
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.interfaces import IFieldSerializer
