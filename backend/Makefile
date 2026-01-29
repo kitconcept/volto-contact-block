@@ -54,18 +54,20 @@ debug-settings:  ## Debug settings
 	@echo "PLONE_VERSION: $(PLONE_VERSION)"
 	@echo "EXAMPLE_CONTENT_FOLDER: $(EXAMPLE_CONTENT_FOLDER)"
 
-.PHONY: update-constraints
-update-constraints: ## Update backend constraints
-	@echo "$(GREEN)==> Update backend constraints$(RESET)"
-	@uvx repoplone deps constraints
+requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
+	@echo "$(GREEN)==> Generate constraints file$(RESET)"
+	@echo '-c https://dist.plone.org/release/$(PLONE_VERSION)/constraints.txt' > requirements.txt
+	@uvx mxdev -c mx.ini
+
+$(VENV_FOLDER): requirements-mxdev.txt ## Install dependencies
+	@echo "$(GREEN)==> Install environment$(RESET)"
+	@uv venv $(VENV_FOLDER)
+	@uv pip install -r requirements-mxdev.txt
 
 .PHONY: sync
-sync: update-constraints ## Sync project dependencies
+sync: $(VENV_FOLDER) ## Sync project dependencies
 	@echo "$(GREEN)==> Sync project dependencies$(RESET)"
-	@uv sync
-
-.PHONY: install
-install: sync config ## Install Plone and dependencies
+	@uv pip install -r requirements-mxdev.txt
 
 instance/etc/zope.ini instance/etc/zope.conf: instance.yaml ## Create instance configuration
 	@echo "$(GREEN)==> Create instance configuration$(RESET)"
@@ -73,6 +75,9 @@ instance/etc/zope.ini instance/etc/zope.conf: instance.yaml ## Create instance c
 
 .PHONY: config
 config: instance/etc/zope.ini
+
+.PHONY: install
+install: $(VENV_FOLDER) config ## Install Plone and dependencies
 
 .PHONY: clean
 clean: ## Clean installation and instance
@@ -123,7 +128,7 @@ format: ## Check and fix code base according to Plone standards
 .PHONY: i18n
 i18n: $(VENV_FOLDER) ## Update locales
 	@echo "$(GREEN)==> Updating locales$(RESET)"
-	@uv run python -m $(PACKAGE_NAME).locales
+	@uv run python -m collective.techevent.locales
 
 # Tests
 .PHONY: test
@@ -132,18 +137,17 @@ test: $(VENV_FOLDER) ## run tests
 
 .PHONY: test-coverage
 test-coverage: $(VENV_FOLDER) ## run tests with coverage
-	@uv run pytest --cov=$(PACKAGE_NAME) --cov-report term-missing
+	@uv run pytest --cov=collective.techevent --cov-report term-missing
 
 # Build Docker images
 .PHONY: build-image
 build-image:  ## Build Docker Images
-	@echo "$(GREEN)==> Building image $(IMAGE_NAME) $(RESET)"
-	@docker build . -t $(IMAGE_NAME) --progress plain -f Dockerfile
+	@docker build . -t $(IMAGE_NAME_PREFIX)-backend:$(IMAGE_TAG) -f Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION)
 
 # Acceptance tests
 .PHONY: acceptance-backend-start
 acceptance-backend-start: ## Start backend acceptance server
-	ZSERVER_HOST=0.0.0.0 ZSERVER_PORT=55001 LISTEN_PORT=55001 APPLY_PROFILES="ploneconf.core:default" CONFIGURE_PACKAGES="plone.restapi,plone.volto,plone.volto.cors,ploneconf.core" $(BIN_FOLDER)/robot-server plone.app.robotframework.testing.VOLTO_ROBOT_TESTING
+	ZSERVER_HOST=0.0.0.0 ZSERVER_PORT=55001 LISTEN_PORT=55001 APPLY_PROFILES="collective.techevent:default" CONFIGURE_PACKAGES="plone.restapi,plone.volto,plone.volto.cors,collective.techevent" $(BIN_FOLDER)/robot-server plone.app.robotframework.testing.VOLTO_ROBOT_TESTING
 
 .PHONY: acceptance-image-build
 acceptance-image-build:  ## Build Docker Images
