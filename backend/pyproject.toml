@@ -4,7 +4,7 @@ dynamic = ["version"]
 description = "Contact block by kitconcept"
 readme = "README.md"
 license = "GPL-2.0-only"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 authors = [
     { name = "kitconcept, GmbH", email = "info@kitconcept.com" },
 ]
@@ -17,13 +17,17 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Web Environment",
     "Framework :: Plone","Framework :: Plone :: 6.1",
+    "Framework :: Plone","Framework :: Plone :: 6.2",
     "Framework :: Plone :: Addon",
-    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     "Operating System :: OS Independent",
-    "Programming Language :: Python","Programming Language :: Python :: 3.12",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
-    "Products.CMFPlone==6.1.3",
+    "Products.CMFPlone",
     "plone.api",
     "plone.restapi",
     "plone.volto",
@@ -38,7 +42,7 @@ test = [
     "Products.PrintingMailHost",
     "pytest",
     "pytest-cov",
-    "pytest-plone>=0.5.0",
+    "pytest-plone>=1.0.0a2",
 ]
 
 [project.urls]
