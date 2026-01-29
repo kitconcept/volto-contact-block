@@ -1,4 +1,4 @@
-# volto contact block (@kitconcept/volto-contact-block)
+# Contact Block (@kitconcept/volto-contact-block)
 
 Contact block by kitconcept
 
@@ -9,7 +9,7 @@ Contact block by kitconcept
 
 ## Features
 
-<!-- List your awesome features here -->
+* Contact block
 
 ## Installation
 
