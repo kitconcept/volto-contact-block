@@ -15,7 +15,7 @@ jobs:
 
   build:
     name: "Docs: Build"
-    uses: plone/meta/.github/workflows/docs-build.yml@v2.x
+    uses: plone/meta/.github/workflows/docs-build.yml@2.x
     with:
       python-version: ${{ inputs.python-version }}
       working-directory: ${{ inputs.working-directory }}
