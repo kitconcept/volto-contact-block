@@ -1,6 +1,6 @@
 {
   "name": "@kitconcept/volto-contact-block",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Contact block by kitconcept",
   "main": "src/index.ts",
   "license": "MIT",
