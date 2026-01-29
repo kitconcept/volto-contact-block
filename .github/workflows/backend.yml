@@ -49,8 +49,6 @@ jobs:
   coverage:
     name: "Backend: Coverage"
     uses: plone/meta/.github/workflows/backend-pytest-coverage.yml@2.x
-    needs:
-      - test
     with:
       python-version: ${{ inputs.python-version }}
       plone-version: ${{ inputs.plone-version }}
@@ -61,6 +59,7 @@ jobs:
     uses: plone/meta/.github/workflows/container-image-build-push.yml@2.x
     needs:
       - lint
+      - test
       - coverage
     permissions:
       contents: read
