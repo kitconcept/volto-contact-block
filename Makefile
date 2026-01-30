@@ -14,7 +14,7 @@ GIT_FOLDER=$(CURRENT_DIR)/.git
 REPOSITORY_SETTINGS := $(shell uvx repoplone settings dump)
 
 PROJECT_NAME := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.name')
-STACK_NAME=2026-ploneconf-org
+STACK_NAME=$(PROJECT_NAME)
 
 VOLTO_VERSION := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.frontend.volto_version')
 PLONE_VERSION := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.backend.base_package_version')
@@ -161,7 +161,7 @@ stack-create-site:  ## Local Stack: Create a new site
 stack-start:  ## Local Stack: Start Services
 	@echo "Start local Docker stack"
 	VOLTO_VERSION=$(VOLTO_VERSION) PLONE_VERSION=$(PLONE_VERSION) docker compose -f docker-compose.yml up -d --build
-	@echo "Now visit: http://2026.ploneconf.org.localhost"
+	@echo "Now visit: http://volto-contact-block.localhost"
 
 .PHONY: stack-status
 stack-status:  ## Local Stack: Check Status
