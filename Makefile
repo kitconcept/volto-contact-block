@@ -16,6 +16,7 @@ REPOSITORY_SETTINGS := $(shell uvx repoplone settings dump)
 PROJECT_NAME := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.name')
 STACK_NAME=$(PROJECT_NAME)
 
+IMAGES_PREFIX := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.container_images_prefix')
 VOLTO_VERSION := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.frontend.volto_version')
 PLONE_VERSION := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.backend.base_package_version')
 
@@ -39,6 +40,7 @@ help: ## This help message
 debug-settings:  ## Debug settings
 	@echo "Debug settings"
 	@echo "PROJECT_NAME: $(PROJECT_NAME)"
+	@echo "IMAGES_PREFIX: $(IMAGES_PREFIX)"
 	@echo "VOLTO_VERSION: $(VOLTO_VERSION)"
 	@echo "PLONE_VERSION: $(PLONE_VERSION)"
 
@@ -202,12 +204,12 @@ acceptance-test:
 .PHONY: acceptance-frontend-image-build
 acceptance-frontend-image-build:
 	@echo "Build acceptance frontend image"
-	@docker build frontend -t plone/2026.ploneconf.org-frontend:acceptance -f frontend/Dockerfile --build-arg VOLTO_VERSION=$(VOLTO_VERSION)
+	@docker build frontend -t $(IMAGES_PREFIX)-frontend:acceptance -f frontend/Dockerfile --build-arg VOLTO_VERSION=$(VOLTO_VERSION)
 
 .PHONY: acceptance-backend-image-build
 acceptance-backend-image-build:
 	@echo "Build acceptance backend image"
-	@docker build backend -t plone/2026.ploneconf.org-backend:acceptance -f backend/Dockerfile.acceptance --build-arg PLONE_VERSION=$(PLONE_VERSION)
+	@docker build backend -t $(IMAGES_PREFIX)-backend:acceptance -f backend/Dockerfile.acceptance --build-arg PLONE_VERSION=$(PLONE_VERSION)
 
 .PHONY: acceptance-images-build
 acceptance-images-build: ## Build Acceptance frontend/backend images
@@ -217,12 +219,12 @@ acceptance-images-build: ## Build Acceptance frontend/backend images
 .PHONY: acceptance-frontend-container-start
 acceptance-frontend-container-start:
 	@echo "Start acceptance frontend"
-	@docker run --rm -p 3000:3000 --name 2026.ploneconf.org-frontend-acceptance --link 2026.ploneconf.org-backend-acceptance:backend -e RAZZLE_API_PATH=http://localhost:55001/plone -e RAZZLE_INTERNAL_API_PATH=http://backend:55001/plone -d plone/2026.ploneconf.org-frontend:acceptance
+	@docker run --rm -p 3000:3000 --name $(PROJECT_NAME)-frontend-acceptance --link $(PROJECT_NAME)-backend-acceptance:backend -e RAZZLE_API_PATH=http://localhost:55001/plone -e RAZZLE_INTERNAL_API_PATH=http://backend:55001/plone -d $(IMAGES_PREFIX)-frontend:acceptance
 
 .PHONY: acceptance-backend-container-start
 acceptance-backend-container-start:
 	@echo "Start acceptance backend"
-	@docker run --rm -p 55001:55001 --name 2026.ploneconf.org-backend-acceptance -d plone/2026.ploneconf.org-backend:acceptance
+	@docker run --rm -p 55001:55001 --name $(PROJECT_NAME)-backend-acceptance -d $(IMAGES_PREFIX)-backend:acceptance
 
 .PHONY: acceptance-containers-start
 acceptance-containers-start: ## Start Acceptance containers
@@ -232,8 +234,8 @@ acceptance-containers-start: ## Start Acceptance containers
 .PHONY: acceptance-containers-stop
 acceptance-containers-stop: ## Stop Acceptance containers
 	@echo "Stop acceptance containers"
-	@docker stop 2026.ploneconf.org-frontend-acceptance
-	@docker stop 2026.ploneconf.org-backend-acceptance
+	@docker stop $(PROJECT_NAME)-frontend-acceptance
+	@docker stop $(PROJECT_NAME)-backend-acceptance
 
 .PHONY: ci-acceptance-test
 ci-acceptance-test:
