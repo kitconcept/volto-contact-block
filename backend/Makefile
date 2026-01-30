@@ -63,7 +63,9 @@ requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
 
 $(VENV_FOLDER): requirements-mxdev.txt ## Install dependencies
 	@echo "$(GREEN)==> Install environment$(RESET)"
-	@uv venv $(VENV_FOLDER)
+	@if [ ! -d "$(VENV_FOLDER)" ]; then \
+		uv venv $(VENV_FOLDER); \
+	fi
 	@uv pip install -r requirements-mxdev.txt
 
 .PHONY: sync
@@ -130,7 +132,7 @@ format: ## Check and fix code base according to Plone standards
 .PHONY: i18n
 i18n: $(VENV_FOLDER) ## Update locales
 	@echo "$(GREEN)==> Updating locales$(RESET)"
-	@uv run python -m collective.techevent.locales
+	@uv run python -m $(PACKAGE_NAME).locales
 
 # Tests
 .PHONY: test
