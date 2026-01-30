@@ -41,6 +41,14 @@ BIN_FOLDER=$(VENV_FOLDER)/bin
 export PYTHONWARNINGS := ignore
 export DOCKER_BUILDKIT := 1
 
+## Force a specific Python version if needed, but only outside CI environments
+ifndef CI
+export UV_PYTHON := 3.13
+endif
+
+## Enable Printing MailHost by default, unless the environment variable is set to False
+export ENABLE_PRINTING_MAILHOST ?= True
+
 all: build
 
 # Add the following 'help' target to your Makefile
@@ -51,6 +59,7 @@ help: ## This help message
 
 .PHONY: debug-settings
 debug-settings:  ## Debug settings
+	@echo "UV_PYTHON: $(UV_PYTHON)"
 	@echo "PLONE_VERSION: $(PLONE_VERSION)"
 	@echo "EXAMPLE_CONTENT_FOLDER: $(EXAMPLE_CONTENT_FOLDER)"
 
@@ -61,7 +70,9 @@ requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
 
 $(VENV_FOLDER): requirements-mxdev.txt ## Install dependencies
 	@echo "$(GREEN)==> Install environment$(RESET)"
-	@uv venv $(VENV_FOLDER)
+	@if [ ! -d "$(VENV_FOLDER)" ]; then \
+		uv venv $(VENV_FOLDER); \
+	fi
 	@uv pip install -r requirements-mxdev.txt
 
 .PHONY: sync
@@ -128,7 +139,7 @@ format: ## Check and fix code base according to Plone standards
 .PHONY: i18n
 i18n: $(VENV_FOLDER) ## Update locales
 	@echo "$(GREEN)==> Updating locales$(RESET)"
-	@uv run python -m collective.techevent.locales
+	@uv run python -m $(PACKAGE_NAME).locales
 
 # Tests
 .PHONY: test
@@ -137,7 +148,7 @@ test: $(VENV_FOLDER) ## run tests
 
 .PHONY: test-coverage
 test-coverage: $(VENV_FOLDER) ## run tests with coverage
-	@uv run pytest --cov=collective.techevent --cov-report term-missing
+	@uv run pytest --cov=$(PACKAGE_NAME) --cov-report term-missing
 
 # Build Docker images
 .PHONY: build-image
@@ -147,7 +158,7 @@ build-image:  ## Build Docker Images
 # Acceptance tests
 .PHONY: acceptance-backend-start
 acceptance-backend-start: ## Start backend acceptance server
-	ZSERVER_HOST=0.0.0.0 ZSERVER_PORT=55001 LISTEN_PORT=55001 APPLY_PROFILES="collective.techevent:default" CONFIGURE_PACKAGES="plone.restapi,plone.volto,plone.volto.cors,collective.techevent" $(BIN_FOLDER)/robot-server plone.app.robotframework.testing.VOLTO_ROBOT_TESTING
+	ZSERVER_HOST=0.0.0.0 ZSERVER_PORT=55001 LISTEN_PORT=55001 APPLY_PROFILES="$(PACKAGE_NAME):default" CONFIGURE_PACKAGES="plone.restapi,plone.volto,plone.volto.cors,$(PACKAGE_NAME)" $(BIN_FOLDER)/robot-server plone.app.robotframework.testing.VOLTO_ROBOT_TESTING
 
 .PHONY: acceptance-image-build
 acceptance-image-build:  ## Build Docker Images
