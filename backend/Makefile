@@ -40,6 +40,12 @@ BIN_FOLDER=$(VENV_FOLDER)/bin
 # Environment variables to be exported
 export PYTHONWARNINGS := ignore
 export DOCKER_BUILDKIT := 1
+
+## Force a specific Python version if needed, but only outside CI environments
+ifndef CI
+export UV_PYTHON := 3.13
+endif
+
 ## Enable Printing MailHost by default, unless the environment variable is set to False
 export ENABLE_PRINTING_MAILHOST ?= True
 
@@ -53,6 +59,7 @@ help: ## This help message
 
 .PHONY: debug-settings
 debug-settings:  ## Debug settings
+	@echo "UV_PYTHON: $(UV_PYTHON)"
 	@echo "PLONE_VERSION: $(PLONE_VERSION)"
 	@echo "EXAMPLE_CONTENT_FOLDER: $(EXAMPLE_CONTENT_FOLDER)"
 
