@@ -30,7 +30,7 @@ dependencies = [
     "plone.api",
     "plone.restapi",
     "plone.volto",
-    "collective.person==1.0.0b3",
+    "collective.person==1.0.0b4",
 ]
 
 [project.optional-dependencies]
