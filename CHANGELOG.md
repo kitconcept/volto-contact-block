@@ -7,6 +7,30 @@
 -->
 
 <!-- towncrier release notes start -->
+## 1.0.0a4 (2026-02-04)
+
+### Backend
+
+No significant changes.
+
+
+
+
+### Frontend
+
+#### Feature
+
+- Update volto and VLT to latest. @iFlameing 
+
+
+
+### Project
+
+No significant changes.
+
+
+
+
 ## 1.0.0a3 (2026-02-04)
 
 ### Backend
