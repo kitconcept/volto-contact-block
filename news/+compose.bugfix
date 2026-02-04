@@ -1,1 +1,0 @@
-Clean up docker-compose.yml, that still had references to the caching setup. @ericof

@@ -9,6 +9,24 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a3 (2026-02-04)
+
+
+### New features:
+
+- Update collective.person to latest. @iFlameing 
+
+
+### Bug fixes:
+
+- Enable Printing MailHost by default, unless the environment variable is set to False. @ericof 
+- Fix `make i18n` command. @ericof 
+
+
+### Internal:
+
+- Force Python 3.13 for new development installations. @ericof 
+
 ## 1.0.0a2 (2026-01-29)
 
 

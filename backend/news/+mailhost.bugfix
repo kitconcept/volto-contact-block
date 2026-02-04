@@ -1,1 +1,0 @@
-Enable Printing MailHost by default, unless the environment variable is set to False. @ericof
