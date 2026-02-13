@@ -53,6 +53,7 @@ const itemSchema = ({
         widget: 'object_browser',
         mode: 'link',
         allowExternals: false,
+        selectableTypes: ['Person'],
       },
     },
     required: [],
