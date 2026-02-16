@@ -7,6 +7,30 @@
 -->
 
 <!-- towncrier release notes start -->
+## 1.0.0a5 (2026-02-16)
+
+### Backend
+
+No significant changes.
+
+
+
+
+### Frontend
+
+#### Bugfix
+
+- Fix some minor css after testing in intranet. @iFlameing 
+
+
+
+### Project
+
+No significant changes.
+
+
+
+
 ## 1.0.0a4 (2026-02-04)
 
 ### Backend

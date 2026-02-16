@@ -8,6 +8,12 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0-alpha.5 (2026-02-16)
+
+### Bugfix
+
+- Fix some minor css after testing in intranet. @iFlameing 
+
 ## 1.0.0-alpha.4 (2026-02-04)
 
 ### Feature
