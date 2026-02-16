@@ -24,6 +24,7 @@
   border: 1px solid #000;
   background-color: transparent;
   color: #000;
+  cursor: pointer;
   font-size: 16px;
   font-weight: 900;
   line-height: 20px;
@@ -36,7 +37,6 @@
 
 .block.contact-list {
   width: 940px;
-  padding: 75px 1rem 25px;
   color: #000;
 
   h2 {
@@ -170,6 +170,8 @@
   line-height: 1;
 
   &::before {
+    position: relative;
+    top: -3px;
     content: '×';
   }
 
