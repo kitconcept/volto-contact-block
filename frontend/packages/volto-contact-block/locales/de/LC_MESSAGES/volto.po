@@ -14,7 +14,7 @@ msgstr ""
 #. Default: "Add Contact"
 #: components/schema
 msgid "Add Contact"
-msgstr ""
+msgstr "Kontakt hinzufügen"
 
 #. Default: "Your Message is Addressed to"
 #: components/Form
@@ -34,7 +34,7 @@ msgstr ""
 #. Default: "Contact"
 #: components/schema
 msgid "Contact"
-msgstr ""
+msgstr "Kontaktieren"
 
 #. Default: "Contact: Write a Message"
 #: components/Form
@@ -59,7 +59,7 @@ msgstr ""
 #. Default: "Contacts List"
 #: components/schema
 msgid "Contacts List"
-msgstr ""
+msgstr "Kontakt"
 
 #. Default: "Error"
 #: components/Form
@@ -174,4 +174,4 @@ msgstr ""
 #. Default: "Contact"
 #: components/Body
 msgid "contactButtonLabel"
-msgstr ""
+msgstr "Kontaktieren"

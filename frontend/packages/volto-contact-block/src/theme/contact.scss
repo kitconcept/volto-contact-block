@@ -155,29 +155,43 @@
 .contact-form-close-button {
   position: fixed;
   z-index: 10000;
-  top: 2rem;
-  right: 2rem;
-  width: 48px;
-  height: 48px;
+  top: 1rem;
+  right: 4rem;
+  display: flex;
+  width: 60px;
+  height: 60px;
   align-items: center;
   justify-content: center;
   padding: 0;
   border: 1px solid #000;
   background: transparent;
-  color: #000;
   cursor: pointer;
-  font-size: 45px;
-  line-height: 1;
+
+  &::before,
+  &::after {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #000;
+    content: '';
+    transition: background-color 0.2s ease;
+  }
 
   &::before {
-    position: relative;
-    top: -3px;
-    content: '×';
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
   }
 
   &:hover {
     background-color: #000;
-    color: #fff;
+
+    &::before,
+    &::after {
+      background-color: #fff;
+    }
   }
 
   &:focus {
