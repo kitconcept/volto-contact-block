@@ -28,6 +28,11 @@
   font-size: 16px;
   font-weight: 900;
   line-height: 20px;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
 }
 
 #page-edit .block.contact-list {
