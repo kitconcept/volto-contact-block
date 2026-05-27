@@ -129,7 +129,7 @@ msgstr ""
 #. Default: "Please choose an existing contact as source for this element"
 #: components/View
 msgid "Please choose an existing contact as source for this element"
-msgstr ""
+msgstr "Bitte wählen Sie einen bestehenden Kontakt als Quelle für dieses Element aus"
 
 #. Default: "privacy-policy"
 #: components/Form

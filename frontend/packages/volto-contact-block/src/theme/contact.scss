@@ -29,8 +29,8 @@
   font-weight: 900;
   line-height: 20px;
   &:hover {
-    background: var(--theme-color, #000);
-    color: var(--theme-foreground-color, #fff);
+    background: var(--theme-foreground-color, #fff);
+    color: var(--theme-color, #000);
   }
 }
 
