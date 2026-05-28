@@ -15,36 +15,41 @@ const messages = defineMessages({
 const ContactListView = (props) => {
   const { data, content, isEditMode } = props;
   const intl = useIntl();
+
+  const showEmptyMessage =
+    !data.hrefList || data.hrefList?.length === 0 || !data.hrefList[0]?.href;
+
   return (
     <div className="block contact-list">
       <div className="block-container">
-        {(data.hrefList?.length === 0 || !data.hrefList) && isEditMode && (
+        {showEmptyMessage && isEditMode && (
           <div className="ui message">
             <div className="teaser-item default">
               <p>{intl.formatMessage(messages.PleaseChooseContact)}</p>
             </div>
           </div>
         )}
-        {data.hrefList?.length > 0 && (
+
+        {data.hrefList?.length > 0 && data.hrefList[0]?.href && (
           <>
             {data.headline && (
               <Heading level={2} className="headline">
                 {data.headline}
               </Heading>
             )}
+
             <div className="ui two column grid">
               <div className="row">
-                {data.hrefList &&
-                  data.hrefList.map((item, index) => (
-                    <div className="column" key={index}>
-                      <ContactBody
-                        key={item.id}
-                        data={item}
-                        isEditMode={isEditMode}
-                        content={content}
-                      />
-                    </div>
-                  ))}
+                {data.hrefList.map((item, index) => (
+                  <div className="column" key={index}>
+                    <ContactBody
+                      key={item.id}
+                      data={item}
+                      isEditMode={isEditMode}
+                      content={content}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </>

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2025-12-22T13:54:55.766Z\n"
+"POT-Creation-Date: 2026-05-28T12:15:44.374Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -38,6 +38,11 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#. Default: "Contact List"
+#: components/schema
+msgid "Contact List"
+msgstr ""
+
 #. Default: "Contact: Write a Message"
 #: components/Form
 msgid "ContactFormHeader"
@@ -56,11 +61,6 @@ msgstr ""
 #. Default: "Your Message about \"{title}\""
 #: components/Form
 msgid "ContactFormTitle"
-msgstr ""
-
-#. Default: "Contacts List"
-#: components/schema
-msgid "Contacts List"
 msgstr ""
 
 #. Default: "Error"

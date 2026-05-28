@@ -14,7 +14,7 @@ msgstr ""
 #. Default: "Add Contact"
 #: components/schema
 msgid "Add Contact"
-msgstr ""
+msgstr "Kontakt hinzufügen"
 
 #. Default: "Your Message is Addressed to"
 #: components/Form
@@ -34,7 +34,12 @@ msgstr ""
 #. Default: "Contact"
 #: components/schema
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
+
+#. Default: "Contact List"
+#: components/schema
+msgid "Contact List"
+msgstr "Kontaktliste"
 
 #. Default: "Contact: Write a Message"
 #: components/Form
@@ -54,11 +59,6 @@ msgstr ""
 #. Default: "Your Message about \"{title}\""
 #: components/Form
 msgid "ContactFormTitle"
-msgstr ""
-
-#. Default: "Contacts List"
-#: components/schema
-msgid "Contacts List"
 msgstr ""
 
 #. Default: "Error"
@@ -129,7 +129,7 @@ msgstr ""
 #. Default: "Please choose an existing contact as source for this element"
 #: components/View
 msgid "Please choose an existing contact as source for this element"
-msgstr ""
+msgstr "Bitte wählen Sie einen bestehenden Kontakt als Quelle für dieses Element aus"
 
 #. Default: "privacy-policy"
 #: components/Form
@@ -174,4 +174,4 @@ msgstr ""
 #. Default: "Contact"
 #: components/Body
 msgid "contactButtonLabel"
-msgstr ""
+msgstr "Kontaktieren"
