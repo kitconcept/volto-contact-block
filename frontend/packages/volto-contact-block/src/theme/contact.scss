@@ -176,7 +176,7 @@
     position: absolute;
     width: 30px;
     height: 2px;
-    background-color: var(--theme-color, #000);
+    background-color: var(--theme-foreground-color, #000);
     content: '';
     transition: background-color 0.2s ease;
   }
@@ -190,7 +190,7 @@
   }
 
   &:hover {
-    background-color: var(--theme-color, #000);
+    background-color: var(--theme-foreground-color, #000);
 
     &::before,
     &::after {
