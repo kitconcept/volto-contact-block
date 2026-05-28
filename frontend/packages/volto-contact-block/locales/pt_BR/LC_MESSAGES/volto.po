@@ -41,6 +41,11 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#. Default: "Contact List"
+#: components/schema
+msgid "Contact List"
+msgstr ""
+
 #. Default: "Contact: Write a Message"
 #: components/Form
 msgid "ContactFormHeader"
@@ -59,11 +64,6 @@ msgstr ""
 #. Default: "Your Message about \"{title}\""
 #: components/Form
 msgid "ContactFormTitle"
-msgstr ""
-
-#. Default: "Contacts List"
-#: components/schema
-msgid "Contacts List"
 msgstr ""
 
 #. Default: "Error"

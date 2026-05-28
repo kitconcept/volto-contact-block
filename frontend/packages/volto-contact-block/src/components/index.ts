@@ -6,7 +6,7 @@ import ContactListEdit from '../components/Edit';
 
 const blockConfig: BlockConfigBase = {
   id: 'contactList',
-  title: 'Contacts List',
+  title: 'Contact List',
   icon: emailSVG,
   group: 'common',
   view: ContactListView,

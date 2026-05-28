@@ -8,8 +8,8 @@ const messages = defineMessages({
     defaultMessage: 'Source',
   },
   contactList: {
-    id: 'Contacts List',
-    defaultMessage: 'Contacts List',
+    id: 'Contact List',
+    defaultMessage: 'Contact List',
   },
   item: {
     id: 'Contact',
