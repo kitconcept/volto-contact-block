@@ -8,6 +8,12 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0-alpha.6 (2026-06-11)
+
+### Bugfix
+
+- Add german translations and fix css @iRohitSingh [#14](https://github.com/kitconcept/volto-contact-block/issue/14)
+
 ## 1.0.0-alpha.5 (2026-02-16)
 
 ### Bugfix

@@ -7,6 +7,30 @@
 -->
 
 <!-- towncrier release notes start -->
+## 1.0.0a6 (2026-06-11)
+
+### Backend
+
+No significant changes.
+
+
+
+
+### Frontend
+
+#### Bugfix
+
+- Add german translations and fix css @iRohitSingh [#14](https://github.com/kitconcept/volto-contact-block/issue/14)
+
+
+
+### Project
+
+No significant changes.
+
+
+
+
 ## 1.0.0a5 (2026-02-16)
 
 ### Backend
