@@ -8,6 +8,12 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0 (2026-09-17)
+
+### Internal
+
+- Update to latest Volto and VLT. @sneridagh 
+
 ## 1.0.0-alpha.6 (2026-06-11)
 
 ### Bugfix
